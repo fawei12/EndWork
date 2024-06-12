@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/login")
@@ -21,10 +22,16 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         user user = new user(null, username, password, null);
         boolean flag = LoginUtil.Login(user);
+        HttpSession session = request.getSession();
+        String message = null;
         if (flag) {
+            message = "登录成功";
+            session.setAttribute("message", message);
             response.sendRedirect("home.jsp");
         } else {
-            response.sendRedirect("login.jsp?error=true");
+            message = "登录失败";
+            session.setAttribute("message", message);
+            response.sendRedirect("login.jsp");
         }
     }
 }

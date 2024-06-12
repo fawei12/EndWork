@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/register")
@@ -24,10 +25,15 @@ public class Register extends HttpServlet {
         user newUser = new user(null, username, password, confirm_password);
 
         boolean registered = RegisterUtil.register(newUser);
+        HttpSession session = request.getSession();
+        String massage;
         if (registered) {
-            response.sendRedirect("login.jsp"); // 注册成功跳转到登录页
+            massage = "注册成功";
         } else {
-            response.getWriter().println("<script>alert('注册失败，用户名可能已存在！'); window.location='register.jsp';</script>");
+            massage = "注册失败";
+            //response.getWriter().println("<script>alert('注册失败，用户名可能已存在！'); window.location='register.jsp';</script>");
         }
+        session.setAttribute("massage", massage);
+        response.sendRedirect("register.jsp");
     }
 }
