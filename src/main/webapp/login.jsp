@@ -15,6 +15,13 @@
 <div class="header">
     <h1>登录</h1>
 </div>
+<% if ("true".equals(request.getParameter("error"))) { %>
+<script>
+    window.onload = function() {
+        alert('用户名或密码错误');
+    };
+</script>
+<% } %>
 <div class="content">
     <form action="login" method="post">
         <label for="username">用户名:</label>
