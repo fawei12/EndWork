@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>关于我们</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div class="header">

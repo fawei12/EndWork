@@ -12,9 +12,10 @@ public class RegisterUtil {
 
     public static boolean register(user newUser) {
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (username, password,email) VALUES (?, ?, ?)")) {
             stmt.setString(1, newUser.getUsername());
-            stmt.setString(2, newUser.getPassword()); // 应考虑使用加密存储
+            stmt.setString(2, newUser.getPassword());
+            stmt.setString(3, newUser.getEmail());
             int result = stmt.executeUpdate();
 
             if (result > 0) {

@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        user user = new user(null, username, password, null);
+        user user = new user(null, username, password,null);
         boolean flag = LoginUtil.Login(user);
         HttpSession session = request.getSession();
         String message = null;

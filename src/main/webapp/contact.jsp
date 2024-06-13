@@ -29,7 +29,7 @@
 <html>
 <head>
     <title>联系我们</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <script>
         function validateContactForm() {
             var name = document.getElementById('name').value;

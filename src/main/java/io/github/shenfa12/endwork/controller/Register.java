@@ -1,7 +1,7 @@
 package io.github.shenfa12.endwork.controller;
 
-import io.github.shenfa12.endwork.Utility.RegisterUtil;
 import io.github.shenfa12.endwork.pojo.user;
+import io.github.shenfa12.endwork.Utility.RegisterUtil;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,28 +12,27 @@ import java.io.IOException;
 
 @WebServlet("/register")
 public class Register extends HttpServlet {
-    private static final long serialVersionUID = 5321514090222093535L;
+    private static final long serialVersionUID = -8149663813386668406L;
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String confirm_password = request.getParameter("confirm_password");
-        user newUser = new user(null, username, password, confirm_password);
-
-        boolean registered = RegisterUtil.register(newUser);
+        String email = request.getParameter("email");
+        user user = new user(null, username, password,email);
+        boolean flag = RegisterUtil.register(user);
         HttpSession session = request.getSession();
-        String massage;
-        if (registered) {
-            massage = "注册成功";
+        String message = null;
+        if (flag) {
+            message = "注册成功";
+            session.setAttribute("message", message);
+            response.sendRedirect("login.jsp");
         } else {
-            massage = "注册失败";
-            //response.getWriter().println("<script>alert('注册失败，用户名可能已存在！'); window.location='register.jsp';</script>");
+            message = "注册失败";
+            session.setAttribute("message", message);
+            response.sendRedirect("register.jsp");
         }
-        session.setAttribute("massage", massage);
-        response.sendRedirect("register.jsp");
     }
 }

@@ -11,5 +11,5 @@ public class user {
     private Integer id;
     private String username;
     private String password;
-    private String confirm_password;
+    private String email;
 }

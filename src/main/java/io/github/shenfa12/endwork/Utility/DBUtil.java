@@ -1,12 +1,9 @@
 package io.github.shenfa12.endwork.Utility;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@Slf4j
 public class DBUtil {
     // 数据库URL
     private static final String URL = "jdbc:mysql://localhost:3306/endwork?serverTimezone=UTC";
@@ -24,7 +21,7 @@ public class DBUtil {
             // 获取连接
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
-            log.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return conn;
     }
