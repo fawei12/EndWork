@@ -43,6 +43,7 @@
             <div class="img__btn">
                 <span class="m--up">注 册</span>
                 <span class="m--in">登 录</span>
+
             </div>
         </div>
         <div class="form sign-up">
