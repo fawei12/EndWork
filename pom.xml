@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.shenfa12</groupId>
-    <artifactId>EndWork</artifactId>
+    <artifactId>HankeWork</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>EndWork</name>
     <packaging>war</packaging>
@@ -69,6 +69,13 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20231013</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
         </dependency>
 
 

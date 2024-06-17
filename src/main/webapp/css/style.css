@@ -1,87 +1,121 @@
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    color: #333;*/
-/*    background-color: #f4f4f4;*/
-/*}*/
-
-
-.header, .footer {
-    background-color: #008000;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-.nav {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-}
-.nav a {
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-}
-.content {
-    padding: 20px;
-    margin-top: 20px;
-    background-color: white;
-    border: 1px solid #ddd;
-}
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-.contact-info, .contact-form {
-    background-color: white;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 8px;
-}
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-control {
-    width: 100%;
-    padding: 8px;
-    margin: 6px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
+* {
+    margin: 0;
     box-sizing: border-box;
-    border-radius: 4px;
+    list-style: none;
 }
-.btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 4px;
+@font-face {
+    font-family: NeueMachina-Regular;
+    font-weight: 400;
+    src: url(../asset/font/NeueMachina-Regular.woff2) format("truetype");
 }
-.btn:hover {
-    background-color: #45a049;
+body {
+    width: 1150px;
+    margin: auto;
 }
 a {
     text-decoration: none;
 }
+header {
+    padding: 0 30px;
+    background-color: #025c03;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+header a {
+    color: white;
+}
+nav {
+    margin-left: 20px;
+    display: flex;
+    font-size: 19px;
+}
+nav ul {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav ul a {
+    display: inline-block;
+    padding: 0 20px;
+    line-height: 70px;
+}
+
+.active {
+    color: white;
+    font-weight: bold;
+}
+
+/* banner */
+.banner {
+    width: 1150px;
+    height: 550px;
+}
+
+/* 标题 */
+.title {
+    width: 100%;
+    background-color: #025c03;
+    line-height: 40px;
+    font-size: 20px;
+    color: white;
+    padding: 8px;
+}
+
+/* 主要的框架 */
+.main {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+/* 左侧内容 */
+.content_left {
+    width: 30%;
+}
+
+.user {
+    width: 100%;
+}
+
+.user img {
+    width: 70%;
+    border-radius: 50%;
+    margin: 20px 15%;
+}
+
+.user div {
+    padding: 20px;
+    line-height: 40px;
+    font-size: 17px;
+}
+
+/* 右侧内容 */
+.content_rigth {
+    width: 66%;
+
+}
+
+.nav {
+    float: left;
+    position: absolute;
+}
+
+/* footer */
+.footer {
+    padding: 10px;
+    text-align: center;
+    background-color: #025c03;
+    color: white;
+}
+/* 按钮样式 */
+.header-button {
+    margin-left: auto;
+    border: none;
+    padding: 1px 2%;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+}
+

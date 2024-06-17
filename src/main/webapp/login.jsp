@@ -1,84 +1,175 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lx305
-  Date: 2024/6/9
-  Time: 下午6:14
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="zh-cn">
+
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css">
 </head>
+
 <body>
-<div class="dowebok">
-    <div class="form sign-in">
-        <form action="login" method="post">
-            <h2>欢迎回来</h2>
-            <label for="login-username">用户名:</label>
-            <input type="text" id="login-username" name="username" required>
-
-            <label for="login-password">密码:</label>
-            <input type="password" id="login-password" name="password" required>
-
-            <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
-            <button type="submit" class="submit">登 录</button>
-        </form>
-    </div>
-
-    <div class="sub-cont">
-        <div class="img">
-            <div class="img__text m--up">
-                <h2>还未注册？</h2>
-                <p>立即注册，发现大量机会！</p>
-            </div>
-            <div class="img__text m--in">
-                <h2>已有帐号？</h2>
-                <p>有帐号就登录吧，好久不见了！</p>
-            </div>
-            <div class="img__btn">
-                <span class="m--up">注 册</span>
-                <span class="m--in">登 录</span>
-            </div>
+<div class="box">
+    <div class="forms">
+        <div class="tips">
+            <span class="login-btn">登录</span>
+            <span class="register-btn">注册</span>
         </div>
-        <div class="form sign-up">
-            <form action="register" method="post">
-                <h2>立即注册</h2>
+        <!-- 登录 -->
+        <div class="login">
+            <!-- 欢迎语 -->
+            <div class="form-title">
+                <h1>你好</h1>
+            </div>
+            <!-- 表单 -->
+            <form action="login" method="get">
+                <div class="form">
+                    <!-- 用户名 -->
+                    <div class="username input-item">
+                        <input type="text" class="ipts" name="username">
+                    </div>
+                    <!-- 密码 -->
+                    <div class="password input-item">
+                        <input type="password" class="ipts" name="password">
+                    </div>
+                    <!-- 忘记密码 -->
+                    <div class="other-select">
+                        <span class="fogot-pwd-btn">forgot password</span>
+                    </div>
+                    <button class="btn">Login</button>
+                </div>
+            </form>
+        </div>
+        <!-- 注册 -->
+        <div class="register">
+            <!-- 欢迎语 -->
+            <div class="form-title">
+                <h1>注册</h1>
+            </div>
+            <form action="register" method="get">
+                <div class="form">
+                    <!-- 用户名 -->
+                    <div class="username input-item">
+                        <input type="text" class="ipts" name="username">
+                    </div>
+                    <!-- 密码 -->
+                    <div class="password input-item">
+                        <input type="password" class="ipts" name="password">
+                    </div>
+                    <!-- 确认密码 -->
+                    <div class="conform-password input-item">
+                        <input type="password" class="ipts" name="conform-password">
+                    </div>
 
-                <label for="register-username">用户名:</label>
-                <input type="text" id="register-username" name="username" required>
-
-                <label for="register-email">邮箱:</label>
-                <input type="email" id="register-email" name="email" required>
-
-                <label for="register-password">密码:</label>
-                <input type="password" id="register-password" name="password" required>
-
-                <label for="confirm-password">确认密码:</label>
-                <input type="password" id="confirm-password" name="confirm_password" required>
-
-                <button type="submit" class="submit">注 册</button>
+                    <button class="btn">Register</button>
+                </div>
+            </form>
+        </div>
+        <!-- 忘记密码 -->
+        <div class="fogot-pwd">
+            <div class="form-title">
+                <h1>忘记密码</h1>
+            </div>
+            <form action="" method="get">
+                <div class="form">
+                    <!-- 用户名 -->
+                    <div class="username input-item">
+                        <input type="text" class="ipts" name="username">
+                    </div>
+                    <!-- 密码 -->
+                    <div class="password input-item">
+                        <input type="password" class="ipts" name="password">
+                    </div>
+                    <!-- 确认密码 -->
+                    <div class="conform-password input-item">
+                        <input type="password" class="ipts" name="conform-password">
+                    </div>
+                    <span class="veri-code-tips"></span>
+                    <button class="btn">Confirm</button>
+                </div>
             </form>
         </div>
     </div>
-</div>
 
-<script src="js/login.js"></script>
-<%
-    String message = (String) session.getAttribute("message");
-    if (message != null) {
-%>
-<script type="text/javascript">
-    window.onload = function() {
-        alert("<%=message%>");
-        <%
-            session.removeAttribute("message");
-        %>
-    };
-</script>
-<%
-    }
-%>
+</div>
 </body>
+<script>
+    const login = document.querySelector('.login')
+    const register = document.querySelector('.register')
+    const fogotPwd = document.querySelector('.fogot-pwd')
+    const registerBtn = document.querySelector('.register-btn')
+    const loginBtn = document.querySelector('.login-btn')
+    const fogotPwdBtn = document.querySelector('.fogot-pwd-btn')
+    const veriCodeTips = document.querySelector('.veri-code-tips');
+    let reckonTimeFlag = 5; //倒计时
+    let reckonTime; //定时器
+    //定时器
+    function countDown() {
+        veriCodeTips.innerHTML = `RESEND(${reckonTimeFlag})`
+        reckonTimeFlag--;
+        if (reckonTimeFlag < 0) {
+            clearInterval(reckonTime);
+            reckonTimeFlag = 5;
+            veriCodeTips.innerHTML = `Click To Get`;
+            veriCodeTips.style.color = "rgb(113 123 185)";
+            veriCodeTips.onclick = veriCodeTipsClick;
+        }
+    }
+
+    //点击事件触发的方法
+    function veriCodeTipsClick() {
+        veriCodeTips.onclick = null;
+        veriCodeTips.style.color = "rgb(153, 151, 151)";
+        reckonTime = setInterval(countDown, 1000);
+        countDown();
+    }
+
+    veriCodeTips.addEventListener('click', function () {
+        veriCodeTipsClick()
+    })
+    registerBtn.addEventListener('click', function () {
+        login.style.opacity = '0'
+        fogotPwd.style.opacity = '0'
+        register.style.opacity = '1'
+        login.style.zIndex = '-1'
+        fogotPwd.style.zIndex = '-1'
+        register.style.zIndex = '10'
+        register.style.animation = 'into 1s ease'
+        login.style.animation = 'none'
+        fogotPwd.style.animation = 'none'
+        registerBtn.style.borderBottom = '4px solid rgb(249, 177, 122)'
+        registerBtn.style.color = '#fff'
+        loginBtn.style.borderBottom = 'none'
+        loginBtn.style.color = 'rgb(100, 108, 154)'
+    })
+    loginBtn.addEventListener('click', function () {
+        login.style.opacity = '1'
+        register.style.opacity = '0'
+        fogotPwd.style.opacity = '0'
+        login.style.zIndex = '10'
+        fogotPwd.style.zIndex = '-1'
+        register.style.zIndex = '-1'
+        login.style.animation = 'into 1s ease'
+        register.style.animation = 'none'
+        fogotPwd.style.animation = 'none'
+        registerBtn.style.borderBottom = ''
+        registerBtn.style.color = 'rgb(100, 108, 154)'
+        loginBtn.style.borderBottom = '4px solid rgb(249, 177, 122)'
+        loginBtn.style.color = '#fff'
+    })
+    fogotPwdBtn.addEventListener('click', function () {
+        fogotPwd.style.opacity = '1'
+        login.style.opacity = '0'
+        register.style.opacity = '0'
+        login.style.zIndex = '-1'
+        fogotPwd.style.zIndex = '10'
+        register.style.zIndex = '-1'
+        fogotPwd.style.animation = 'into 1s ease'
+        register.style.animation = 'none'
+        login.style.animation = 'none'
+
+    })
+</script>
+
 </html>
